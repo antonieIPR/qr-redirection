@@ -1,26 +1,14 @@
 [
     {
-      "id": 224001,
-      "name": "P+R Massenhoven",
-      "hub": "MP-BE2240.1",
-      "target": "https://mobx.publiekeruimte.info/"
+      "id": 123456,
+      "name": "Voorbeeldlocatie 1",
+      "hub": "MP-FKG6",
+      "target": "https://www.hoppin.be/"
     },
     {
-      "id": 868001,
-      "name": "Koekelare Dorp",
-      "hub": "MP-8680.1",
-      "target": "https://mobx.publiekeruimte.info/"
-    },
-    {
-      "id": 890001,
-      "name": "Ieper Station",
-      "hub": "MP-BE8900.1",
-      "target": "https://mobx.publiekeruimte.info/"
-    },
-    {
-      "id": 909001,
-      "name": "Gontrode Station",
-      "hub": "MP-BE9090.1",
-      "target": "https://mobx.publiekeruimte.info/"
+      "id": 123457,
+      "name": "Voorbeeldlocatie 2",
+      "hub": "MP-ZB89",
+      "target": "https://wegenenverkeer.be/zakelijk/documenten/ontwerprichtlijnen/hoppinpunten"
     }
   ]
