@@ -1,22 +1,22 @@
 <?php
 
-// Function to find an object in an array that matches a key-value criterium.
+// Deze functie zoekt een matchend object voor een key-value paar:
 function find($array, $key, $value, $default_url) {
-    // Initialize result array. There should be only one result, but we're still using an array in case multiple results show up
+    // Initialiseer een resultaten-array. Er zou slechts één resultaat moeten zijn, maar desondanks gebruiken we een array voor het geval dat er meerdere resultaten zouden zijn.
     $results = array();
 
-    // Loop through each object in the given array
+    // Loop door elk object in dit resultaten-array:
     foreach ($array as $object){
-        // Check if there is a match for the given key-value pair
+        // Controleer of er een match is voor het opgegeven key-value paar:
         if ( $object[$key] == $value ){
-            // Every found match will be pushed to the results array
+            // Elke gevonden match wordt toegevoegd aan het resultaten-array:
             array_push($results, $object);
         }
     }
     
-    // Check if there are any results, otherwise, redirect the user to a default URL.
+    // Controleer of er resultaten gevonden zijn en zo niet, verwijs de gebruiker dan door naar een standaard URL:
     if ( $results ){
-        return $results[0]; // We will only return the first object found, hypothetical other results will be omitted.
+        return $results[0]; // We tonen enkel het eerste object in het resultaten-array, hypothetische andere resultaten worden weggelaten.
     } else {
         header('Location:'.$default_url);
         die();
@@ -24,22 +24,29 @@ function find($array, $key, $value, $default_url) {
     
 };
 
-// Fetch JSON file with all objects
+// Haal het JSON-bestand met alle objecten op:
 $codes = file_get_contents('codes.json');
 
-// Convert JSON to PHP Array
+// Zet het JSON-bestand om naar een PHP array:
 $locations = json_decode($codes, true);
 
-// Save query variable, this will be the ID number of an object, eg. 180002 for MP-BE1800.2
-$q = $_GET['q'];
+// Sla de queryvariabele op, dit is het zescijferig ID-nummer van het object, bijvoorbeeld 180002 voor MP-BE1800.2:
+if(isset($_GET['q'])){ // We controleren of de variabele is ingesteld
+    $q = $_GET['q'];
+} else {
+    $q = 0; // Wanneer er geen waarde voor q is gegeven, stellen we hem in op '0'. Dit zal betekenen dat we naar de standaard URL verwezen zullen worden.
+}
 
-// Set the default URL for redirection when an invalid value is entered as query variable
-$fallback = 'https://www.hoppin.be/';
+// Stel een standaard URL in waar de gebruiker naar verwezen wordt wanneer een ongeldig object wordt opgevraagd:
+$urlFile = fopen("standaard-url.txt", "r") or die("Fout: kon geen standaard URL vinden!");
+$fallback = fread($urlFile,filesize("standaard-url.txt"));
 
-// Execute find() function to fetch the target object
+// Voer de find() functie die we hierboven gemaakt hebben uit om het doel-object op te halen:
 $object = find($locations, 'id', $q, $fallback);
 
-// And finally, redirect the user to the correct page
+fclose($urlFile);
+
+// En als laatst sturen we de gebruiker door naar de juiste pagina:
 header('Location:'.$object['target']);
 die();
 

@@ -1,0 +1,20 @@
+[
+    {
+      "id": "<< ID VAN DE DOORVERWIJZING >> (Alleen gehele getallen. Verplicht veld!)",
+      "name": "<< NAAM VAN HOPPINPUNT >> (Niet verplicht)",
+      "hub": "<< REFERENTIENUMMER VAN HOPPINPUNT >> (Niet verplicht)",
+      "target": "<< URL VAN DOELPAGINA >> (Verplicht veld!)"
+    },
+    {
+      "id": 100001,
+      "name": "Dorpsplein",
+      "hub": "MP-BE2600.1",
+      "target": "https://www.hoppin.be/dorpsplein"
+    },
+    {
+      "id": 100003,
+      "name": "Vier Jaargetijdenlei",
+      "hub": "MP-BE2920.7",
+      "target": "https://www.hoppin.be/vier-jaargetijdenlei"
+    }
+  ]
